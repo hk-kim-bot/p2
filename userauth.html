@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/mypage.css">
+</head>
+<body>
+  <div class="mypage">
+    <div class="mypage-nav">
+      <div class="userinfo">
+        <a href="profileimg.html">
+          <img src="img/user-profile.png"alt="프로필사진">
+        </a>
+        <p>유저아이디:${principal.user.username}</p>
+        <p>유저 등급: ${principal.user.grade}</p>
+
+      </div>
+      <div class="userservice">
+        <div class="msnmenu userservice-menu"><b>메시지/알림</b><br>
+          <li><a href="message.html">수신 쪽지</a></li>
+          <li><a href="sendmessage.html">발신 쪽지</a></li>
+        </div>
+        <div class="guestmenu userservice-menu"><b>게스트</b><br>
+          <li><a href="">내용</a></li>
+        </div>
+        <div class="hostmenu userservice-menu"><b>호스트</b><br>
+          <li><a href="">내용</a></li>
+          <li><a href="">내용</a></li>
+        </div>
+        <div class="usermenu userservice-menu"><b>개인정보</b><br>
+          <li><a href="userupdate.html">정보변경</a></li>
+          <li><a href="userauth.html">인증/권한</a></li>
+        </div>
+        <div class="mypage-nav-footer">
+          <li>로그아웃</li>
+          <li>고객센터</li>
+          <li>회원 탈퇴</li>
+        </div>
+      </div>
+    </div>
+    <div class="mypage-container">
+      
+    </div>
+
+  </div>
+</body>
+</html>
