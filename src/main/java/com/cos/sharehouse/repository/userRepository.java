@@ -10,5 +10,9 @@ public interface userRepository extends JpaRepository<Users,Integer> {
 
 	Optional<Users> findByUsername(String username);
 	//count 쓰기
+
+	
+
+	Optional<Users> findByNicknameAndEmail(String usernick, String email);
 	
 }

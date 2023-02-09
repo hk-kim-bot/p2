@@ -4,10 +4,9 @@
     <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
 <sec:authorize access="isAuthenticated()">
-	<sec:authentication property="principal" var="principal" />
-	
+	<sec:authentication property="principal" var="principal" />	
 </sec:authorize>
-    
+
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -22,20 +21,16 @@
     <div class="index_header">
       <div class="logo">로고</div>
       <div class="right">
-        <div class="nav"><a href="">서비스 이용</a></div>
+        <div class="nav"><a href="/product/main">서비스 이용</a></div>
         <div class="nav"><a href="">이용안내</a></div>
         
         <c:choose>
         	
         	<c:when test="${principal ne null}">
-        		
-        		
-        		
-        			<div class="nav"><a href="/logout">로그아웃</a></div>
-        		
-        		
-        		
-        		
+        			
+				        <div class="nav"><a href="/user/mypage">${principal.user.id}마이페이지</a></div>
+        				<div class="nav"><a href="/logout">로그아웃</a></div>
+        			
         	</c:when>
         	
         	<c:otherwise>
@@ -45,10 +40,14 @@
         
       </div>
     </div>
+    
     <div class="index-wrapper">
       <div class="index_page">
         <p class="index_pagetext">새로운 환경<br>&nbsp&nbsp새로운 시작
+        
         </p>
+        
+        
       </div>
       <div class="index_page">
         <p class="index_pagetext">새로운 환경<br>&nbsp&nbsp새로운 시작</p>
