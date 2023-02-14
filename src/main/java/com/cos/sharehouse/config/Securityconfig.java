@@ -7,6 +7,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -43,7 +44,7 @@ public class Securityconfig extends WebSecurityConfigurerAdapter{
 		http
 			.csrf().disable() // csrf토큰 비활성화(테스트시 걸어두는게 좋음)
 			.authorizeRequests()
-			.antMatchers("/main","/","/auth/**","/js/**","/css/**","/api/**","/img/**","/oauth/**")//권한 설정
+			.antMatchers("/main","/","/auth/**","/js/**","/css/**","/api/**","/img/**","/oauth/**","/profile/**","/product/**","/image/**","/search/**")//권한 설정
 			.permitAll()
 			.anyRequest()//이게 아닌 다른 모든 요청은 
 			.authenticated()//인증이 필요
@@ -52,10 +53,16 @@ public class Securityconfig extends WebSecurityConfigurerAdapter{
 			.loginPage("/auth/loginForm")
 			.loginProcessingUrl("/auth/loginProc")
 			.defaultSuccessUrl("/")
-//			.failureUrl("/");
+//			.failureUrl("/auth/fail")
 		.and()
         	.logout()
-        	.logoutSuccessUrl("/") // 로그아웃 성공시 리다이렉트 주소
+        	.logoutSuccessUrl("/auth/loginForm") // 로그아웃 성공시 리다이렉트 주소
         	.invalidateHttpSession(true); // 로그아웃 이후 세션 전체 삭제 여부
+	}
+
+	@Override
+	public void configure(WebSecurity web) throws Exception {
+    web.ignoring()
+            .antMatchers("/css/**","/js/**","/font/**","/images/**","/error");
 	}
 }
