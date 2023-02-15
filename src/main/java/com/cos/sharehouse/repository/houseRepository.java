@@ -29,5 +29,7 @@ public interface houseRepository extends JpaRepository<House,Integer>{
 		Page<House> searchhouse(@Param("type")String[] type,@Param("category")String[] category,@Param("bedroom")int[] bedroom,@Param("amenities") String amenities,Pageable page);
 //		@Query(value="select * from House h left outer join(select * from houselike where userid=:userid) l on h.id=l.houseid",nativeQuery=true)
 //		Page<House> 찜보기(Pageable page,@Param("userid")int userid);
-		
+		@Query(value="select * from House h join (select * from houselike where userid=:userid) l on h.id=l.houseid"
+				,countQuery="select count(*) from House h join (select * from houselike where userid=:userid) l on h.id=l.houseid",nativeQuery=true)
+		Page<House> findlikelist(@Param("userid")String userid,Pageable page);
 }

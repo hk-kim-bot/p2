@@ -9,7 +9,14 @@ let index ={
 		});
 		$("#update-btn").on("click",()=>{
 			if(updatecheckvalidation()){
-				this.update();
+				if($("#phone").val()!=$("#originalphone").val()){
+					if(confirm("전화번호 변경시 인증이 초기화 됩니다 \n진행하시겠습니까?")){
+						this.update2();	
+					}
+				}else{
+					
+					this.update();
+				}
 			}
 			
 		});
@@ -57,6 +64,28 @@ let index ={
 		}
 		$.ajax({
 			url:"/api/update/"+id,
+			type:"PUT",
+			data:JSON.stringify(date),
+			contentType:"application/json; charset=utf-8",
+			dataType:"json"
+		}).done(function(){
+			alert("회원정보 변경완료")
+			location.href="/user/mypage";
+		}).fail(function(error){
+			alert(JSON.stringify(error));
+			console.log(error)
+		})
+	},
+	update2:function(){
+		let id = $("#userid").val()
+		let date={
+			username:$("#updateusername").val(),
+			password:$("#pwd").val(),
+			email:$("#email").val(),
+			phonenumber:$("#phone").val()
+		}
+		$.ajax({
+			url:"/api/update2/"+id,
 			type:"PUT",
 			data:JSON.stringify(date),
 			contentType:"application/json; charset=utf-8",

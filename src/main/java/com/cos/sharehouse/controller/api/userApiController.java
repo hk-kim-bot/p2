@@ -101,6 +101,22 @@ public class userApiController {
 // 			session.setAttribute("SPRING_SECURITY_CONTEXT", securityContext);
 		return new ResponseDto<Integer>(HttpStatus.OK.value(),1);
 	}
+	@PutMapping("/api/update2/{id}")
+	public ResponseDto<Integer> userupdate2(@PathVariable int id,@RequestBody Users user){
+		userservice.회원정보변경2(id, user);
+		
+		Authentication authentication = authenticationManager
+				.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(),user.getPassword() ));
+		
+		SecurityContext securityContext = SecurityContextHolder.getContext();
+		securityContext.setAuthentication(authentication);
+//		Authentication authentication = new UsernamePasswordAuthenticationToken(
+//				principal, null, principal.getAuthorities());
+//		 	SecurityContext securityContext = SecurityContextHolder.getContext();
+//	 		securityContext.setAuthentication(authentication);
+// 			session.setAttribute("SPRING_SECURITY_CONTEXT", securityContext);
+		return new ResponseDto<Integer>(HttpStatus.OK.value(),1);
+	}
 	@DeleteMapping("/api/out/{id}")
 	public ResponseDto<Integer> userupdate(@PathVariable int id){
 		userservice.회원탈퇴(id);

@@ -76,6 +76,11 @@ public class productService {
 		refer.setUserid(userid);
 		likeRepository.save(refer);
 	}
-
+	@Transactional(readOnly=true)
+	public Page<House> 찜목록보기(String userid,Pageable page){
+		return houseRepository.findlikelist(userid,page);
+	}
+	
+	
 	
 }

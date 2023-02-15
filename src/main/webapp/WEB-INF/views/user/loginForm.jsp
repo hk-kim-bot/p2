@@ -15,9 +15,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="/css/signin.css" />
+    <link rel="shortcut icon" sizes="32x32" type="image/x-icon"
+  href="/img/favicon_io/favicon-32x32.png">
     
   </head>
   <body>
+  <header>
+	<%@ include file="../layout/header.jsp" %>
+  </header>
     <div class="login-wrapper">
       <div class="login-form">
         <h3>SHARE HOUSE</h3>
@@ -45,6 +50,10 @@
         <div class="social-login kakao"><a href="https://kauth.kakao.com/oauth/authorize?client_id=bc3d1da7dfe8afb92b61f8f94ad85623&redirect_uri=http://localhost:8006/oauth/kakao&response_type=code&prompt=login"></a></div>
       </div>
     </div>
+    <footer>
+<%@ include file="../layout/footer.jsp" %>
+
+</footer>
     <script>
     function openfind(){
 	    window.open( "/auth/finduserwindow", "아이디찾기", "width=500, height=500, top=50, left=50" );

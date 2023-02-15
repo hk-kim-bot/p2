@@ -77,6 +77,18 @@ public class userService {
 		
 	}
 	@Transactional
+	public void 회원정보변경2(int id,Users user) {
+		Users refer = 회원정보(id);
+		refer.setEmail(user.getEmail());
+		refer.setPhonenumber(user.getPhonenumber());
+		String rawPassword = user.getPassword();
+		String encPassword = encodeer.encode(rawPassword);
+		refer.setPassword(encPassword);
+		refer.setRoles(RoleType.guest);
+		refer.setUserauth(authType.notauth);
+		
+	}
+	@Transactional
 	public void 회원탈퇴(int id) {
 		userrepository.deleteById(id);
 		

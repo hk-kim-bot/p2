@@ -2,19 +2,24 @@
   padding: 0;
   margin: 0;
 }
+header {
+ 
+  height: 100px;
+  
+}
 .mypage{
   width: 1200px;
   display: flex;
   flex-wrap: nowrap;
   margin: 0 auto;
-  background-color: rgba(0, 0, 255, 0.021);
+  
 }
 .mypage-nav{
   width: 300px;
-  height: 850px;
+  height: 800px;
   list-style-type: none;
   position: fixed;
-  margin-top: 50px;
+ 
 	background-color:rgba(0, 0, 255, 0.021);
 	border-radius: 25px;
 	color: rgb(49, 7, 49);
@@ -222,9 +227,9 @@
 .outmessagebox_text{
   width: 750px;
   height: 300px;
-  overflow: scroll;
   
-  border: 1px solid gray;
+  
+  
 }
 .outcheck{
   display: block;
@@ -329,4 +334,30 @@
 .messagecontents{
   padding:15px;
 }
-
+.likelist-container h1{
+  margin-left:15px;
+}
+.likelist-page{
+  margin-top: 10px;
+  width: 100%;
+  height: 700px;
+  position: relative;
+  display:grid;
+  grid-template-columns: repeat(4,200px);
+  column-gap: 10px;
+  
+}
+.likehouse{
+	width:200px;
+	height:350px;
+}
+#likehouse-img{
+	width:200px;
+}
+#likehouse-img img{
+	width:100%;
+}
+.home__info span,
+.home__info a{
+	font-size:small;
+}

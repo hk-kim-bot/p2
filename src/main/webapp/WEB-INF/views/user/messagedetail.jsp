@@ -18,9 +18,14 @@
   <title>Document</title>
   <link rel="stylesheet" href="/css/mypage.css">
   <link rel="stylesheet" href="/css/replymessage.css">
+<link rel="shortcut icon" sizes="32x32" type="image/x-icon"
+  href="/img/favicon_io/favicon-32x32.png">
 
 </head>
 <body>
+<header>
+	<%@ include file="../layout/header.jsp" %>
+  </header>
   <div class="mypage">
     <div class="mypage-nav">
       <%@ include file="mypagenav.jsp" %>
@@ -73,6 +78,7 @@
     </div>
   </div>
   </div>
+ 
   <script
 	src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
 	<script src="/js/message.js"></script>

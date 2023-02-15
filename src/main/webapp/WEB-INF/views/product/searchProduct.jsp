@@ -10,15 +10,17 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>에어비앤비</title>
-  <link rel="shortcut icon" sizes="76x76" type="image/x-icon"
-  href="https://a0.muscache.com/airbnb/static/logotype_favicon-21cc8e6c6a2cca43f061d2dcabdf6e58.ico">
+  <title>Sharehouse</title>
+
+   <link rel="shortcut icon" sizes="32x32" type="image/x-icon"
+  href="/img/favicon_io/favicon-32x32.png">
   <link rel="stylesheet" href="/css/test.css">
 
   <link rel="stylesheet" href="/css/qna.css"/>
   <link rel="stylesheet" href="/css/animation.css">
   <link rel="stylesheet" href="/css/searchProduct.css">
-   <link rel="stylesheet" href="/css/footer.css">
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+   
   <!-- 달력  -->
 
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
@@ -36,7 +38,7 @@
 </head>
 <body>
   <header>
-
+	<%@ include file="../layout/header.jsp" %>
   </header>
 
   <section id="main">
@@ -96,21 +98,7 @@
           <input type="checkbox" name="hometype" id="hometypeasingle"value="privateRoom"><label for="hometypeasingle">개인실</label><br>
           <input type="checkbox" name="hometype" id="hometypeshared"value="publicRoom"><label for="hometypeshared">다인실</label>
         </div>  
-        
-        <div id="slidecontainer">
-        	<h4>1박당 요금</h4>
-        	<!--  
-        	<input type="range" min="0" max="300,000" value="50" class="slider" id="myRange">
-        	<p>value : <span id="value"></span></p>
-        	-->
-        	<p>
-  			<label for="amount"><!-- Price range: --></label>
-  			<input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
-			</p>
-			<div id="slider-range" style="margin-top: 18px;"></div>
-        </div>
-        
-
+      
         <div id="home_bad">
           <h4>침실 수</h4>
           <input type="checkbox" name="homeBed" id="homeBad1"value="1"><label for="homeBad1">1</label><br>
@@ -249,7 +237,87 @@
         <!-- home 끝 -->
         </c:forEach>
       </div>
-      
+   <nav aria-label="Page navigation example" style=" position: absolute; bottom: 0; left: 35%;">
+  <ul class="pagination">
+  <c:choose>
+	<c:when test="${houses.first}">
+		<li class="page-item disabled">
+	      <a class="page-link" href="?page=${houses.number-1}" aria-label="Previous">
+	        <span aria-hidden="true">&laquo;</span>
+	        <span class="sr-only">Previous</span>
+	      </a>
+    	</li>
+	</c:when>
+	<c:otherwise>
+	    <li class="page-item">
+	      <a class="page-link" href="?page=${houses.number-1}" aria-label="Previous">
+	        <span aria-hidden="true">&laquo;</span>
+	        <span class="sr-only">Previous</span>
+	        
+	      </a>
+	      
+	    </li>
+	</c:otherwise>
+  </c:choose>
+  <c:choose>
+  	<c:when test="${houses.first}">
+  		<li class="page-item active"><span class="page-link">1<span class="sr-only">(current)</span>
+      	</span></li>
+    	<li class="page-item">
+      	<a class="page-link" href="?page=1">2</a>
+    	</li>
+    	<li class="page-item"><a class="page-link" href="?page=2">3</a></li>	
+  	</c:when>
+  	<c:when test="${houses.number==1 }">
+  		<li class="page-item "><a class="page-link" href="?page=0">1</a></li>
+    	<li class="page-item active">
+    	<span class="page-link">2<span class="sr-only">(current)</span>
+      	</span>
+    	</li>
+    	<li class="page-item"><a class="page-link" href="?page=2">3</a></li>	
+  	</c:when>
+  	<c:when test="${houses.last}">
+  		<li class="page-item">
+  		<a class="page-link" href="?page=${houses.number-2 }">${houses.number-1 }</a>
+  		</li>
+    	<li class="page-item">
+      	<a class="page-link" href="?page=${houses.number-1 }">${houses.number }</a>
+    	</li>
+    	<li class="page-item active"><span class="page-link">${houses.number+1 }<span class="sr-only">(current)</span>
+      	</span></li>	
+  	</c:when>
+  	<c:otherwise>
+  		 <li class="page-item"><a class="page-link" href="?page=${houses.number }">${houses.number }</a></li>
+    	<li class="page-item active">
+      	<span class="page-link">
+       	 ${houses.number+1 }
+        <span class="sr-only">(current)</span>
+     	 </span>
+    	</li>
+    	<li class="page-item"><a class="page-link" href="?page=${houses.number+2 }">${houses.number+2 }</a></li>
+  	</c:otherwise>
+  	</c:choose>
+    <c:choose>
+	<c:when test="${houses.last}">
+		 <li class="page-item disabled">
+      <a class="page-link" href="?page=${houses.number+1}" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+        <span class="sr-only">Next</span>
+      </a>
+    </li>
+	</c:when>
+	<c:otherwise>
+	     <li class="page-item">
+      <a class="page-link" href="?page=${houses.number+1}" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+        <span class="sr-only">Next</span>
+      </a>
+    </li>
+	</c:otherwise>
+  </c:choose>
+   
+  </ul>
+</nav>
       
     </section>
     <c:choose>

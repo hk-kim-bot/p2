@@ -16,6 +16,8 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -35,6 +37,7 @@ import com.cos.sharehouse.controller.api.userApiController;
 import com.cos.sharehouse.service.MailSendService;
 import com.cos.sharehouse.service.MessageService;
 import com.cos.sharehouse.service.OAuthService;
+import com.cos.sharehouse.service.productService;
 import com.cos.sharehouse.service.userService;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
@@ -52,6 +55,8 @@ public class userController {
 	private MessageService MessageService;
 	@Autowired
 	private MailSendService MailSendService;
+	@Autowired
+	private productService productService;
 	@GetMapping("/auth/signup")
 	public String signup() {
 		return "user/signup";
@@ -292,6 +297,11 @@ public class userController {
 		model.addAttribute("user",userService.회원정보(id));
 		return "user/changepwd";
 	}
-	
+	@GetMapping("/user/likelist")
+	public String likelist(Model model,@PageableDefault(size=8,sort="id",direction= Sort.Direction.ASC)Pageable page,@AuthenticationPrincipal PrincipalDetail principal) {
+		model.addAttribute("houses",productService.찜목록보기(Integer.toString(principal.getUser().getId()), page));
+		
+		return "user/likelist";
+	}
 	
 }

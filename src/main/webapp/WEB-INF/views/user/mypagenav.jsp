@@ -23,17 +23,17 @@
         	</c:otherwise>
         </c:choose>
         </a>
-        <p>유저아이디:${principal.user.username}</p>
+        <p><b>${principal.user.username}</b>님</p>
         <c:if test="${principal.user.grade <10 }">
-	        <p>유저 등급: Beginner</p>
+	        <p>등급:<i> Beginner</i></p>
         	
         </c:if>
           <c:if test="${principal.user.grade >=10 && principal.user.grade <50 }">
-	        <p>유저 등급: Traveler</p>
+	        <p> 등급:<i> Traveler</i></p>
         	
         </c:if>
           <c:if test="${principal.user.grade >=50}">
-	        <p>유저 등급: Veteran</p>
+	        <p> 등급:<i> Veteran</i></p>
         	
         </c:if>
 
@@ -46,7 +46,7 @@
         </div>
         <div class="guestmenu userservice-menu"><b>게스트</b><br>
           <li><a href="">예약확인</a></li>
-          <li><a href="">찜리스트</a></li>
+          <li><a href="/user/likelist">찜리스트</a></li>
 
         </div>
         <div class="hostmenu userservice-menu"><b>호스트</b><br>

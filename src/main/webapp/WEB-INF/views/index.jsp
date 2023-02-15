@@ -15,32 +15,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/css/index.css">
     <link rel="stylesheet" href="/css/footer.css">
+    <link rel="shortcut icon" sizes="32x32" type="image/x-icon"
+  href="/img/favicon_io/favicon-32x32.png">
+    
     <title>title</title>
     
   </head>
   <body>
-    <div class="index_header">
-      <div class="logo">로고</div>
-      <div class="right">
-        <div class="nav"><a href="/product/main">서비스 이용</a></div>
-        <div class="nav"><a href="">이용안내</a></div>
-        
-        <c:choose>
-        	
-        	<c:when test="${principal ne null}">
-        			
-				        <div class="nav"><a href="/user/mypage">마이페이지</a></div>
-        				<div class="nav"><a href="/logout">로그아웃</a></div>
-        			
-        	</c:when>
-        	
-        	<c:otherwise>
- 	 			 <div class="nav"><a href="/auth/loginForm">로그인</a></div>
-        	</c:otherwise>
-        </c:choose>
-        
-      </div>
-    </div>
+   <header>
+	<%@ include file="layout/header.jsp" %>
+  </header>
     
     <div class="index-wrapper">
       <div class="index_page">
@@ -51,18 +35,35 @@
         
       </div>
       <div class="index_page">
-        <p class="index_pagetext">새로운 환경<br>&nbsp&nbsp새로운 시작</p>
+        <p class="index_pagetext">여행은 정신을<br>&nbsp&nbsp 다시 젊어지게 하는 샘이다 <br> <i style="font-size:medium;">- 안데르센 -</i>  </p>
       </div>
       <div class="index_page">
-        <p class="index_pagetext">새로운 환경<br>&nbsp&nbsp새로운 시작</p>
+        <p class="index_pagetext">낯선 땅이란 없다.<br>&nbsp&nbsp 단지, 그 여행자만 낯설 뿐이다. <br><i style="font-size:medium;">- 로버트 루이스 스티븐슨 -</i> </p>
       </div>
       <div class="index_page">
-        <p class="index_pagetext">새로운 환경<br>&nbsp&nbsp새로운 시작</p>
+        <p class="index_pagetext" style="color:gray;">여행은 사람을 순수하게 <br>그러나 강하게 만든다.</p>
       </div>
       <div class="index_page">
         <div class="index_page_btn">
-          <div class="index_page_btn_a"><a href="">상품보러가기</a></div>
-          <div class="index_page_btn_a"><a href="">상품등록하기</a></div>
+          <div class="index_page_btn_a"><a href="/product/main">상품보러가기</a></div>
+          <c:choose>
+	        	<c:when test="${principal.user.roles == 'guest' }">	
+			     	<div class="index_page_btn_a">   
+			     	 <a  onclick="guestclick()" id="upload-btn-tag">상품등록하기</a>
+			    	</div>
+	        	</c:when>
+	        	<c:when test="${principal.user.roles == 'host' }">
+	        		<div class="index_page_btn_a">   
+			     	 <a  href="/auth/bcah" id="upload-btn-tag">상품등록하기</a>
+		
+			    	</div>
+	        	</c:when>
+				<c:otherwise>
+					<div class="index_page_btn_a">
+						<a href="/auth/loginForm">상품등록하기</a>
+					</div>
+				</c:otherwise>
+	 		</c:choose>
           <div class="index_page_btn_a"><a href="">이용안내</a></div>
 
         </div>
@@ -87,5 +88,6 @@
       opt.observe(p[2])
       opt.observe(p[3])
     </script>
+    <script type="text/javascript" src="/js/authchecking.js"></script>
   </body>
 </html>
