@@ -1,0 +1,55 @@
+@charset "UTF-8";
+ .header{
+      width: 100%;
+      height: 100px;
+      display: grid;
+      grid-template-columns: repeat(4,25%);
+     border-bottom:1px solid gainsboro;
+    }
+    .header-logo{
+     height:100px;
+     grid-column: 1/2;
+
+    }
+    .header-logo img{
+     width: 300px;
+     padding:20px;
+    }
+    .header-nav{
+      grid-column: 3/5;
+      display: grid;
+      grid-template-columns: repeat(7, 120px);
+      grid-template-areas:  '. . . a b c d';
+      
+    }
+    .header-nav li{
+      list-style-type: none;
+      text-align: center;
+      vertical-align: middle;
+      
+    }
+    .header-nav li a{
+      text-decoration: none;
+      color: black;
+      font-size: x-large;
+      display: block;
+      width: 100%;
+      height: 100px;
+      line-height: 90px;
+    }
+    .header-nav li a:hover{
+      border-bottom: 2px solid black;
+    }
+    .header-nav li:nth-child(1){
+      grid-area: a;
+    }
+    .header-nav li:nth-child(2){
+      grid-area: b;
+    }
+    .header-nav li:nth-child(3){
+      grid-area: c;
+    }
+      .header-nav li:nth-child(4){
+      grid-area: d;
+    }
+    
